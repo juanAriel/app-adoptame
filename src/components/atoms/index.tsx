@@ -5,8 +5,8 @@ const Button = () => {
   return (
     <View>
       <TouchableOpacity style={styles.button}>
-      <Text style={styles.textButton}>Registrar</Text>
-    </TouchableOpacity>
+        <Text style={styles.textButton}>Registrar</Text>
+      </TouchableOpacity>
     </View>
   )
 }
