@@ -4,8 +4,6 @@ import Button from "../components/atoms";
 import Input from "../components/atoms/input";
 
 
-//const image = {uri: '/assets/adaptive-icon.png'};
-
 const Home = () => {
   return (
     <View style={styles.container}>
