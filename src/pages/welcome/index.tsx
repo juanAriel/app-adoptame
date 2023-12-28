@@ -1,10 +1,11 @@
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, Button } from "react-native";
 import React from "react";
-import Button from "../../components/atoms";
+//import Button from "../../components/atoms";
 import Input from "../../components/atoms/input";
+import HomeProps from "./interface";
 
 
-const Home = () => {
+const Home: React.FC<HomeProps> = ({navigation}) => {
   return (
       <View style={styles.container}>
           <ImageBackground
@@ -13,9 +14,8 @@ const Home = () => {
               source={require("../../../assets/images/welcome.png")}
           />
           <Text style={styles.textHome}> Bienvenido </Text>
-          <Button />
-          <Button />
-          <Input />
+          <Button title="Register" onPress={ ()=> navigation.navigate("Register")}/>
+          <Input/>
       </View>
   );
 };
