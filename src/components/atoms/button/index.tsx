@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import ButtonProps from './inteface'
 
 const Button = () => {
   return (
     <View>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.textButton}>Registrar</Text>
+        <Text style={styles.textButton}>{}</Text>
       </TouchableOpacity>
     </View>
   )

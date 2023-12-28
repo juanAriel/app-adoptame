@@ -5,6 +5,7 @@ import Home from '../pages/welcome';
 import Register from '../pages/register';
 
 export type RouteParamList={
+    Home:undefined;
     Register:undefined;
 }
 
@@ -15,7 +16,7 @@ const rootNavigation = () => {
       <Stack.Screen
       name="Home"
       component={Home}
-      options={{ title: "TAXI APP" }}
+      options={{ title: "BIENVENIDO A ADOPTA" }}
     />
     <Stack.Screen
       name="Register"
