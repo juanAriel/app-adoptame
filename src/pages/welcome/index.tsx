@@ -6,13 +6,17 @@ import Input from "../../components/atoms/input";
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-        <ImageBackground style={styles.imageApp} source={require("../../assets/images/welcome.png")}/>
-        <Text style={styles.textHome}> Bienvenido </Text>
-      <Button />
-      <Button />
-      <Input />
-    </View>
+      <View style={styles.container}>
+          <ImageBackground
+              imageStyle={{ borderRadius: 250 }}
+              style={styles.imageApp}
+              source={require("../../assets/images/welcome.png")}
+          />
+          <Text style={styles.textHome}> Bienvenido </Text>
+          <Button />
+          <Button />
+          <Input />
+      </View>
   );
 };
 
@@ -30,9 +34,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   imageApp: {
-    backgroundColor: "#79afa0",
-    borderRadius: 200,
-    width: 250,
-    height: 250,
+    width: 350,
+    height: 350,
+    bottom: 50
   }
 });
