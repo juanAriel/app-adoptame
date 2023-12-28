@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import React from "react";
-import Button from "../components/atoms";
-import Input from "../components/atoms/input";
+import Button from "../../components/atoms";
+import Input from "../../components/atoms/input";
 
 
 const Home = () => {
