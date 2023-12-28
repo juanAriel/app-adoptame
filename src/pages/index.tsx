@@ -1,13 +1,17 @@
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import React from "react";
 import Button from "../components/atoms";
 import Input from "../components/atoms/input";
 
 
+const image = {uri: '../../assets/favicon.png'};
+
 const Home = () => {
   return (
     <View style={styles.container}>
-        <ImageBackground style={styles.imageApp} source={require("../../assets/images/welcome.png")}/>
+      <ImageBackground style={styles.imageApp} source={image} >
+        {/* <Image source={image} /> */}
+      </ImageBackground>
         <Text style={styles.textHome}> Bienvenido </Text>
       <Button />
       <Button />
