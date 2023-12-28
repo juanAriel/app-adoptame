@@ -10,7 +10,7 @@ const Home = () => {
           <ImageBackground
               imageStyle={{ borderRadius: 250 }}
               style={styles.imageApp}
-              source={require("../../assets/images/welcome.png")}
+              source={require("../../../assets/images/welcome.png")}
           />
           <Text style={styles.textHome}> Bienvenido </Text>
           <Button />
