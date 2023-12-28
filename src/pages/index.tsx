@@ -1,22 +1,22 @@
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import React from "react";
 import Button from "../components/atoms";
 import Input from "../components/atoms/input";
 
 
+const image = {uri: '../../assets/favicon.png'};
+
 const Home = () => {
   return (
-      <View style={styles.container}>
-          <ImageBackground
-              imageStyle={{ borderRadius: 250 }}
-              style={styles.imageApp}
-              source={require("../../assets/images/welcome.png")}
-          />
-          <Text style={styles.textHome}> Bienvenido </Text>
-          <Button />
-          <Button />
-          <Input />
-      </View>
+    <View style={styles.container}>
+      <ImageBackground style={styles.imageApp} source={image} >
+        {/* <Image source={image} /> */}
+      </ImageBackground>
+        <Text style={styles.textHome}> Bienvenido </Text>
+      <Button />
+      <Button />
+      <Input />
+    </View>
   );
 };
 
@@ -34,8 +34,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   imageApp: {
-    width: 350,
-    height: 350,
-    bottom: 50
+    backgroundColor: "#79afa0",
+    borderRadius: 200,
+    width: 250,
+    height: 250,
   }
 });
