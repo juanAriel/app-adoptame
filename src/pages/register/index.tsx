@@ -1,51 +1,78 @@
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import React from 'react'
-import Input from '../../components/atoms/input';
-import navigation from '../../navigation';
-
+import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import Input from "../../components/atoms/input";
 
 const Register = () => {
   return (
-      <View style={styles.containerH}>
-          <Text style={styles.textTile}>REGISTRO</Text>
-          <View style={styles.container}>
-              <TextInput style={styles.textWitch} placeholder="C.I." />
-              <TextInput style={styles.textWitch} placeholder="Nombre" />
-              <TextInput style={styles.textWitch} placeholder="Edad" />
-              <TextInput style={styles.textWitch} placeholder="Contrasenia" />
-              <TextInput style={styles.textWitch} placeholder="Celular" />
-              <TextInput style={styles.textWitch} placeholder="Correo" />
-          </View>
-          <Button title="Registrar" />
+    <View style={styles.containerH}>
+      <Text style={styles.textTile}>REGISTRO</Text>
+      <View style={styles.container}>
+        <Text style={styles.textTitleForm}>Ci</Text>
+        <Input style={styles.textWitch} placeholder="65265498" />
+        <Text style={styles.textTitleForm}>Nombre</Text>
+        <Input style={styles.textWitch} placeholder="Nombre" />
+        <Text style={styles.textTitleForm}>Edad</Text>
+        <Input style={styles.textWitch} placeholder="Edad" />
+        <Text style={styles.textTitleForm}>Contrasenia</Text>
+        <Input style={styles.textWitch} placeholder="**********" />
+        <Text style={styles.textTitleForm}>Celular</Text>
+        <Input style={styles.textWitch} placeholder="70000001" />
+        <Text style={styles.textTitleForm}>Correo</Text>
+        <Input style={styles.textWitch} placeholder="ejemplo@gmail.com" />
       </View>
+      <View>
+      <TouchableOpacity style={styles.textButton} onPress={()=>console.log("aqui tambien ira al login")}>
+        <Text >Register</Text>
+      </TouchableOpacity>
+    </View>
+    </View>
   );
-}
+};
 
-export default Register
+export default Register;
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#8bf7f7",
-        fontWeight: "bold",
-        justifyContent: "center",
-        width: 350,
-        margin: 90,
-        height: "50%"
-    },
-    containerH: {
-        backgroundColor: "#9DFFFF",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-    },
-    textTile: {
-        justifyContent: "center",
-        fontSize: 40,
-        fontWeight: "bold",
-    },
-    textWitch: {
-        height: 40,
-        margin: 5,
-        padding: 10,
-        backgroundColor: "#FFFFFF",
-    },
+  container: {
+    backgroundColor: "#7CEEEF",
+    fontWeight: "bold",
+    justifyContent: "center",
+    width: 380,
+    margin: 50,
+    height: 500,
+    borderRadius:25,
+  },
+  containerH: {
+    backgroundColor: "#9DFFFF",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+  },
+  textTile: {
+    color: "#17BAC0",
+    justifyContent: "center",
+    fontSize: 40,
+    fontWeight: "bold",
+  },
+  textTitleForm: {
+    color: "#17BAC0",
+    justifyContent: "center",
+    fontSize: 20,
+    marginLeft:20,
+  },
+  textWitch: {
+    height: 40,
+    margin: 5,
+    padding: 10,
+    backgroundColor: "#FFFFFF",
+  },
+  textButton:{
+    width: 184,
+    height: 54,
+    borderRadius: 20,
+    backgroundColor: "#17BAC0",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonContainer:{
+    alignItems:'center',
+  }
 });

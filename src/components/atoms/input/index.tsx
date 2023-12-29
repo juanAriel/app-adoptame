@@ -1,10 +1,10 @@
 import { View, Text, TextInput, StyleSheet} from 'react-native'
 import React from 'react'
 
-const Input = () => {
+const Input = (props:any) => {
   return (
-    <View>
-      <TextInput style={styles.inputStyle}/>  
+    <View style={styles.containerMain}>
+      <TextInput style={styles.inputStyle} placeholder={props.placeholder}/>  
     </View>
   )
 }
@@ -12,11 +12,14 @@ const Input = () => {
 export default Input
 
 const styles = StyleSheet.create({
+  containerMain:{
+    width:340,
+    marginLeft:20,
+  },
   inputStyle: {
-      
       backgroundColor: '#fafafa',
-      paddingHorizontal: 160,
+      paddingHorizontal: 5,
       paddingVertical: 10,
-      borderRadius:20,
+      borderRadius:15,
     }
 })
