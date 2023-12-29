@@ -17,7 +17,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
       <ImageBackground
         imageStyle={{ borderRadius: 250 }}
         style={styles.imageApp}
-        source={require("../../../assets/images/welcome.png")}
+        source={require("../../../assets/images/welcome1.png")}
       />
       <Text style={styles.textHome}> Bienvenido </Text>
 
@@ -26,14 +26,14 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
           style={styles.customButtonContainer}
           onPress={() => navigation.navigate("Register")}
         >
-          <Text>Register</Text>
+          <Text style={styles.customButtonText}>Registrar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.customButtonContainer}
-          onPress={() => console.log("ire al login")}
+          onPress={() => navigation.navigate("Login")}
         >
-          <Text>Login</Text>
+          <Text style={styles.customButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -73,5 +73,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#17BAC0",
     justifyContent: "center",
     alignItems: "center",
+  },
+  customButtonText: {
+    fontSize: 28,
+    fontWeight: "600",
+    lineHeight: 32,
+    letterSpacing: 0,
+    textAlign: "left",
+    fontFamily: "Roboto",
+    color: "#FFFFFF", 
   },
 });
