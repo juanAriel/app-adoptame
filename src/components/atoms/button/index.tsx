@@ -2,11 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import ButtonProps from './inteface'
 
-const Button = () => {
+const Button = (props:any) => {
   return (
     <View>
-      <TouchableOpacity >
-        <Text style={styles.textButton}>{}</Text>
+      <TouchableOpacity onPress={props.onPres}>
+        <Text style={styles.textButton}>{props.title}</Text>
       </TouchableOpacity>
     </View>
   )
