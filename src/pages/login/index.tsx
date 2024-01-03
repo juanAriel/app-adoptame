@@ -1,8 +1,10 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Input from "../../components/atoms/input";
+import { useNavigation } from "@react-navigation/native";
+import HomeProps from "./interface";
 
-const Login = () => {
+const Login: React.FC<HomeProps> = ({ navigation }) => {
   return (
     <View style={styles.containerH}>
       <Text style={styles.textTile}>Login</Text>
@@ -17,14 +19,14 @@ const Login = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.customButtonContainer}
-          onPress={() => console.log("aqui tambien ira al login")}
+          onPress={() => navigation.navigate("Home1")}
         >
           <Text style={styles.customButtonText}>Ingresar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.customButtonContainer}
-          onPress={() => console.log("aqui tambien ira al login")}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={styles.customButtonText}>Salir</Text>
         </TouchableOpacity>
