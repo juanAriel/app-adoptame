@@ -9,11 +9,20 @@ import React from "react";
 
 //import Input from "../../components/atoms/input";
 import WelcomeProps from "./interface";
+import styled from 'styled-components/native';
 //import Button from "../../components/atoms/button";
+
+
+const ViewContainer  = styled.View`
+  background-color: #9DFFFF;
+  flex: 1 ;
+  align-items: center;
+  justify-content:center;
+`
 
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <ViewContainer>
       <ImageBackground
         imageStyle={{ borderRadius: 250 }}
         style={styles.imageApp}
@@ -36,7 +45,7 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
           <Text style={styles.customButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ViewContainer>
   );
 };
 
