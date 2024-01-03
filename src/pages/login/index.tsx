@@ -19,7 +19,8 @@ const Login : React.FC<HomeProps> = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.customButtonContainer}
-          onPress={() => console.log("aqui tambien al home ")}
+          onPress={() => navigation.navigate("Home1")}
+         
         >
           <Text style={styles.customButtonText}>Ingresar</Text>
         </TouchableOpacity>

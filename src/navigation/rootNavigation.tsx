@@ -3,12 +3,14 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Register from '../pages/register';
 import Login from '../pages/login';
+import Home1 from '../pages/home';
 import Welcome from '../pages/welcome';
 
 export type RouteParamList={
   Welcome:undefined;
     Register:undefined;
     Login:undefined;
+    Home1:undefined;
 }
 
 const Stack = createNativeStackNavigator<RouteParamList>();
@@ -28,6 +30,11 @@ const rootNavigation = () => {
     <Stack.Screen
       name="Login"
       component={Login}
+      options={{ headerShown: true }}
+    />
+     <Stack.Screen
+      name="Home1"
+      component={Home1}
       options={{ headerShown: true }}
     />
     </Stack.Navigator>
