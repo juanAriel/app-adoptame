@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, Dimensions, TouchableOpacity
 
 const { width } = Dimensions.get('window');
 
-const Home1 = ({ navigation }) => {
+const Home1 = () => {
   const scrollViewRef = useRef();
 
   const imagenes = [
@@ -27,13 +27,13 @@ const Home1 = ({ navigation }) => {
         showsHorizontalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={200}
-        contentContainerStyle={{ marginTop: 100 }} // Ajusta el marginTop según tus necesidades
+        contentContainerStyle={{ marginTop: 100 }}
       >
         {imagenes.map((imagen, index) => (
           <View key={index} style={styles.carouselItem}>
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            
               <Image source={{ uri: imagen }} style={styles.carouselImage} />
-            </TouchableOpacity>
+            
           </View>
         ))}
       </ScrollView>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
-    borderRadius: 20, // Puedes ajustar según tus preferencias
+    borderRadius: 20,
   },
   textContainer: {
     alignItems: 'center',
