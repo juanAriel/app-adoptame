@@ -1,10 +1,10 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Input from "../../components/atoms/input";
-import { useNavigation } from "@react-navigation/native";
-import HomeProps from "./interface";
+import HomeProps from "../welcome/interface";
 
-const Login: React.FC<HomeProps> = ({ navigation }) => {
+
+const Login : React.FC<HomeProps> = ({ navigation }) => {
   return (
     <View style={styles.containerH}>
       <Text style={styles.textTile}>Login</Text>
@@ -20,13 +20,14 @@ const Login: React.FC<HomeProps> = ({ navigation }) => {
         <TouchableOpacity
           style={styles.customButtonContainer}
           onPress={() => navigation.navigate("Home1")}
+         
         >
           <Text style={styles.customButtonText}>Ingresar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.customButtonContainer}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Welcome")}
         >
           <Text style={styles.customButtonText}>Salir</Text>
         </TouchableOpacity>
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 380,
     margin: 30,
-    height: 300,
+    height: 250,
     borderRadius: 25,
   },
   containerH: {

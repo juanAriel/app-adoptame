@@ -1,8 +1,9 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Input from "../../components/atoms/input";
+import RegisterProps from "../welcome/interface";
 
-const Register = () => {
+const Register : React.FC<RegisterProps> = ({ navigation }) => {
   return (
     <View style={styles.containerH}>
       <Text style={styles.textTile}>REGISTRO</Text>
@@ -21,8 +22,8 @@ const Register = () => {
         <Input style={styles.textWitch} placeholder="ejemplo@gmail.com" />
       </View>
       <View>
-      <TouchableOpacity style={styles.textButton} onPress={()=>console.log("aqui tambien ira al login")}>
-        <Text >Register</Text>
+      <TouchableOpacity style={styles.textButton} onPress={()=>navigation.navigate("Login")}>
+        <Text style={styles.titleButton}>Register</Text>
       </TouchableOpacity>
     </View>
     </View>
@@ -74,5 +75,14 @@ const styles = StyleSheet.create({
   },
   buttonContainer:{
     alignItems:'center',
-  }
+  },
+  titleButton: {
+    fontSize: 28,
+    fontWeight: "600",
+    lineHeight: 32,
+    letterSpacing: 0,
+    textAlign: "left",
+    fontFamily: "Roboto",
+    color: "#FFFFFF",
+  },
 });
