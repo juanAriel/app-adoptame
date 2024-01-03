@@ -8,10 +8,10 @@ import {
 import React from "react";
 
 //import Input from "../../components/atoms/input";
-import HomeProps from "./interface";
+import WelcomeProps from "./interface";
 //import Button from "../../components/atoms/button";
 
-const Home: React.FC<HomeProps> = ({ navigation }) => {
+const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -40,7 +40,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default Welcome;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
