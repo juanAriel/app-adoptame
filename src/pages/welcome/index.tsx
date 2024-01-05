@@ -1,7 +1,4 @@
 import {
-  StyleSheet,
-  View,
-  Text,
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
@@ -11,9 +8,7 @@ import React from "react";
 import WelcomeProps from "./interface";
 import styled from 'styled-components/native';
 //import Button from "../../components/atoms/button";
-import { Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get("window");
 
 const ViewContainer  = styled.View`
   background-color: #9DFFFF;
@@ -24,33 +19,33 @@ const ViewContainer  = styled.View`
 
 const TextHome = styled.Text`
   justify-content: center;
-  font-size: ${width * 0.1}px;
+  font-size: 35px;
   font-weight: bold;
-  margin-bottom: ${height * 0.02}px;
+  margin-bottom: 2px;
   color: #000000;
 `
 
 const CircularImage = styled(ImageBackground)`
-  width: ${width * 0.8}px;
-  height: ${width * 0.8}px; 
-  borderRadius: ${width * 0.4}px; 
+  width: 300px;
+  height: 300px; 
+  border-radius: 150px; 
   overflow: hidden;
-  bottom: ${height * 0.05}px;
+  bottom: 5px;
 `
 
-const ViewbuttonContainer = styled.View`
+const ViewButtonContainer = styled.View`
   justify-content: center;
   align-items: center; 
   flex-direction: row;
-  margin-top: ${height * 0.02}px;
+  margin-top: 10px;
 `
 
 const CustomTouchableOpacity = styled(TouchableOpacity)`
-  width: ${width * 0.4}px;
-  height: ${height * 0.08}px;
-  margin-right: ${width * 0.02}px;  
-  margin-left: ${width * 0.02}px;  
-  border-radius: ${width * 0.05}px;
+  width: 150px;
+  height: 50px;
+  margin-right: 10px;  
+  margin-left: 10px;  
+  border-radius: 15px;
   overflow: hidden;
   background-color: #17BAC0;
   justify-content: center;
@@ -58,9 +53,9 @@ const CustomTouchableOpacity = styled(TouchableOpacity)`
 `
 
 const CustomButtonText = styled.Text`
-  font-size: ${width * 0.05}px;
-  font-weight: 600;
-  line-height: ${height * 0.04}px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
   letter-spacing: 0;
   text-align: left;
   font-family: "Roboto";
@@ -71,12 +66,12 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   return (
     <ViewContainer>
       <CircularImage
-        imageStyle={{ borderRadius: 250 }}
+        
         source={require("../../../assets/images/welcome1.png")}
       />
       <TextHome> Bienvenido </TextHome>
 
-      <ViewbuttonContainer>
+      <ViewButtonContainer>
         <CustomTouchableOpacity
           onPress={() => navigation.navigate("Register")}
         >
@@ -88,7 +83,7 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
         >
           <CustomButtonText>Login</CustomButtonText>
         </CustomTouchableOpacity>
-      </ViewbuttonContainer>
+      </ViewButtonContainer>
     </ViewContainer>
   );
 };
