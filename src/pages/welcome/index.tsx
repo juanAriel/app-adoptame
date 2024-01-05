@@ -32,15 +32,15 @@ const TextHome = styled.Text`
 
 const CircularImage = styled(ImageBackground)`
   width: ${width * 0.8}px;
-  height: ${width * 0.8}px; /* Hacer la imagen cuadrada */
-  borderRadius: ${width * 0.4}px; /* Hacer el borde circular */
+  height: ${width * 0.8}px; 
+  borderRadius: ${width * 0.4}px; 
   overflow: hidden;
   bottom: ${height * 0.05}px;
 `
 
 const ViewbuttonContainer = styled.View`
   justify-content: center;
-  align-items: center;  /* Centrar horizontalmente los elementos */
+  align-items: center; 
   flex-direction: row;
   margin-top: ${height * 0.02}px;
 `
@@ -48,8 +48,8 @@ const ViewbuttonContainer = styled.View`
 const CustomTouchableOpacity = styled(TouchableOpacity)`
   width: ${width * 0.4}px;
   height: ${height * 0.08}px;
-  margin-right: ${width * 0.02}px;  /* Ajusta el margen derecho según sea necesario */
-  margin-left: ${width * 0.02}px;  /* Ajusta el margen izquierdo según sea necesario */
+  margin-right: ${width * 0.02}px;  
+  margin-left: ${width * 0.02}px;  
   border-radius: ${width * 0.05}px;
   overflow: hidden;
   background-color: #17BAC0;
