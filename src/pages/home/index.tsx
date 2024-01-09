@@ -1,7 +1,41 @@
 import React, { useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, Dimensions, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
 
 const { width } = Dimensions.get('window');
+
+const Container = styled.View`
+  flex: 1;
+  background-color: #9DFFFF;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CarouselItem = styled.View`
+  width: ${width}px;
+  height: 300px;
+`;
+
+const CarouselImage = styled.Image`
+  width: 100%;
+  height: 100%;
+  resizeMode: cover;
+  border-radius: 20px;
+`;
+
+const TextContainer = styled.View`
+align-items: center;
+justify-content: flex-start; /* Ajusta la alineación vertical en la parte superior */
+margin-vertical: 75px; /* Ajusta el margen vertical */
+`;
+
+const TextTitle = styled.Text`
+  color: #17BAC0;
+  font-size: 30px;
+  text-align: center;
+  font-family: "Roboto";
+  color: #FFFFFF;
+`;
 
 const Home1 = () => {
   const scrollViewRef = useRef();
@@ -19,7 +53,7 @@ const Home1 = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <ScrollView
         ref={scrollViewRef}
         horizontal
@@ -30,50 +64,19 @@ const Home1 = () => {
         contentContainerStyle={{ marginTop: 100 }}
       >
         {imagenes.map((imagen, index) => (
-          <View key={index} style={styles.carouselItem}>
-            
-              <Image source={{ uri: imagen }} style={styles.carouselImage} />
-            
-          </View>
+          <CarouselItem key={index}>
+            <CarouselImage source={{ uri: imagen }} />
+          </CarouselItem>
         ))}
       </ScrollView>
 
-      <View style={styles.textContainer}>
-        <Text style={styles.textTitle}>
+      <TextContainer>
+        <TextTitle>
           BIENVENIDOS A ADOPTA, UNA APLICACIÓN PARA AYUDAR A ENCONTRAR UN HOGAR A NUESTROS AMIGOS
-        </Text>
-      </View>
-    </View>
+        </TextTitle>
+      </TextContainer>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#9DFFFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  carouselItem: {
-    width,
-    height: 300,
-  },
-  carouselImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-    borderRadius: 20,
-  },
-  textContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 35,
-  },
-  textTitle: {
-    color: '#17BAC0',
-    fontSize: 35,
-    textAlign: 'center',
-  },
-});
 
 export default Home1;
