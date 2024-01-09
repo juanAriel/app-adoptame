@@ -1,101 +1,95 @@
-import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import styled from 'styled-components/native';
 import Input from "../../components/atoms/input";
 import HomeProps from "../welcome/interface";
 
+const Container = styled.View`
+  background-color: #9DFFFF;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
 
-const Login : React.FC<HomeProps> = ({ navigation }) => {
+const Title = styled.Text`
+  color: #17BAC0;
+  font-size: 40px;
+  font-weight: bold;
+  justify-content: center;
+`;
+
+const FormContainer = styled.View`
+  background-color: #7CEEEF;
+  justify-content: center;
+  width: 380px;
+  margin: 30px;
+  height: 250px;
+  border-radius: 25px;
+  font-weight: bold;
+`;
+
+const FormText = styled.Text`
+  color: #17BAC0;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+  justify-content: center;
+`;
+
+const FormInput = styled(Input)`
+  height: 40px;
+  margin: 5px;
+  padding: 10px;
+  background-color: #FFFFFF;
+`;
+
+const ButtonContainer = styled.View`
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: space-between;
+`;
+
+const CustomButton = styled.TouchableOpacity`
+  width: 184px;
+  height: 54px;
+  margin-right: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #17BAC0;
+  justify-content: center;
+  align-items: center;
+  left: 5px;
+`;
+
+const CustomButtonText = styled.Text`
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: left;
+  font-family: "Roboto";
+  color: #FFFFFF;
+`;
+
+const Login: React.FC<HomeProps> = ({ navigation }) => {
   return (
-    <View style={styles.containerH}>
-      <Text style={styles.textTile}>Login</Text>
-      <View style={styles.container}>
-        <Text style={styles.textTitleForm}>Correo</Text>
-        <Input style={styles.textWitch} placeholder="ejemplo@gmail.com" />
-        <Text style={styles.textTitleForm}>Contrasenia</Text>
-        <Input style={styles.textWitch} placeholder="******" />
-     
-     
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.customButtonContainer}
-          onPress={() => navigation.navigate("Home1")}
-         
-        >
-          <Text style={styles.customButtonText}>Ingresar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.customButtonContainer}
-          onPress={() => navigation.navigate("Welcome")}
-        >
-          <Text style={styles.customButtonText}>Salir</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <Container>
+      <Title>Login</Title>
+      <FormContainer>
+        <FormText>Correo</FormText>
+        <FormInput placeholder="ejemplo@gmail.com" />
+        <FormText>Contraseña</FormText>
+        <FormInput placeholder="******" />
+      </FormContainer>
+      <ButtonContainer>
+        <CustomButton onPress={() => navigation.navigate("Home1")}>
+          <CustomButtonText>Ingresar</CustomButtonText>
+        </CustomButton>
+        <CustomButton onPress={() => navigation.navigate("Welcome")}>
+          <CustomButtonText>Salir</CustomButtonText>
+        </CustomButton>
+      </ButtonContainer>
+    </Container>
   );
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#7CEEEF",
-    fontWeight: "bold",
-    justifyContent: "center",
-    width: 380,
-    margin: 30,
-    height: 250,
-    borderRadius: 25,
-  },
-  containerH: {
-    backgroundColor: "#9DFFFF",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100%",
-  },
-  textTile: {
-    color: "#17BAC0",
-    justifyContent: "center",
-    fontSize: 40,
-    fontWeight: "bold",
-  },
-  textTitleForm: {
-    color: "#17BAC0",
-    justifyContent: "center",
-    fontSize: 20,
-    marginLeft: 20,
-    marginTop: 10,
-  },
-  textWitch: {
-    height: 40,
-    margin: 5,
-    padding: 10,
-    backgroundColor: "#FFFFFF",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 20, 
-    justifyContent: "space-between",
-  },
-  customButtonContainer: {
-    width: 184,
-    height: 54,
-    left: 5,
-    marginRight: 10,
-    borderRadius: 20,
-    overflow: "hidden",
-    backgroundColor: "#17BAC0",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  customButtonText: {
-    fontSize: 28,
-    fontWeight: "600",
-    lineHeight: 32,
-    letterSpacing: 0,
-    textAlign: "left",
-    fontFamily: "Roboto",
-    color: "#FFFFFF",
-  },
-});
