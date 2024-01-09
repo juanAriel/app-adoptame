@@ -32,10 +32,10 @@ const rootNavigation = () => {
       component={Login}
       options={{ headerShown: true }}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="Home1"
       component={Home1}
-      options={{ headerShown: true }}
+      options={{ headerShown: false }}
     />
     </Stack.Navigator>
   )
