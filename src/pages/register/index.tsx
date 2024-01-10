@@ -22,8 +22,8 @@ const TextTitle = styled.Text`
 const FormContainer = styled.View`
   background-color: #7CEEEF;
   justify-content: center;
-  width: 380px;
-  margin: 50px;
+  width: 375px;
+  margin: 30px;
   height: 500px;
   border-radius: 25px;
 `;
@@ -42,7 +42,7 @@ const TextInput = styled(Input)`
 `;
 
 const RegisterButton = styled(TouchableOpacity)`
-  width: 184px;
+  width: 150px;
   height: 54px;
   border-radius: 20px;
   background-color: #17BAC0;
@@ -52,13 +52,13 @@ const RegisterButton = styled(TouchableOpacity)`
 `;
 
 const RegisterButtonText = styled.Text`
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 32px;
-  letter-spacing: 0;
-  text-align: left;
-  font-family: "Roboto";
-  color: #FFFFFF;
+font-size: 20px;
+font-weight: bold;
+line-height: 20px;
+letter-spacing: 0;
+text-align: left;
+font-family: "Roboto";
+color: #FFFFFF;
 `;
 const Register : React.FC<RegisterProps> = ({ navigation }) => {
   return (
