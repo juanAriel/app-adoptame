@@ -81,7 +81,7 @@ const Login: React.FC<HomeProps> = ({ navigation }) => {
         <FormInput placeholder="******" />
       </FormContainer>
       <ButtonContainer>
-        <CustomButton onPress={() => navigation.navigate("Home1")}>
+        <CustomButton onPress={() => navigation.navigate("Home")}>
           <CustomButtonText>Ingresar</CustomButtonText>
         </CustomButton>
         <CustomButton onPress={() => navigation.navigate("Welcome")}>
