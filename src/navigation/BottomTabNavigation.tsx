@@ -1,9 +1,9 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home1 from "../pages/home";
 import Especies from "../pages/especies";
 import InformacionUsuario from "../pages/informacion";
+import Home from "../pages/home";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,8 +25,8 @@ const BottomTabNavigation = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        name="Home1"
-        component={Home1}
+        name="Home"
+        component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
