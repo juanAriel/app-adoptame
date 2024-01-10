@@ -37,7 +37,7 @@ const TextTitle = styled.Text`
   color: #FFFFFF;
 `;
 
-const Home1 = () => {
+const Home = () => {
   const scrollViewRef = useRef();
 
   const imagenes = [
@@ -79,4 +79,4 @@ const Home1 = () => {
   );
 };
 
-export default Home1;
+export default Home;
