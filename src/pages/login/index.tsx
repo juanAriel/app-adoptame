@@ -2,6 +2,9 @@ import React from "react";
 import styled from 'styled-components/native';
 import Input from "../../components/atoms/input";
 import HomeProps from "../welcome/interface";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {initializeApp }from 'firebase/app';
+import {firebaseConfig}from '../../../firebase-config';
 
 const Container = styled.View`
   background-color: #9DFFFF;
