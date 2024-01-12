@@ -2,6 +2,9 @@ import React from "react";
 import styled from 'styled-components/native';
 import Input from "../../components/atoms/input";
 import HomeProps from "../welcome/interface";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {initializeApp }from 'firebase/app';
+import {firebaseConfig}from '../../../firebase-config';
 
 const Container = styled.View`
   background-color: #9DFFFF;
@@ -18,13 +21,13 @@ const Title = styled.Text`
 `;
 
 const FormContainer = styled.View`
-  background-color: #7CEEEF;
-  justify-content: center;
-  width: 380px;
-  margin: 30px;
-  height: 250px;
-  border-radius: 25px;
-  font-weight: bold;
+background-color: #7CEEEF;
+justify-content: center;
+width: 375px;
+margin: 37px;
+height: 255px;
+border-radius: 25px;
+font-weight: bold;
 `;
 
 const FormText = styled.Text`
@@ -36,10 +39,12 @@ const FormText = styled.Text`
 `;
 
 const FormInput = styled(Input)`
-  height: 40px;
-  margin: 5px;
-  padding: 10px;
-  background-color: #FFFFFF;
+width: 80%; /* Ajusta el ancho según tus necesidades */
+height: 40px;
+margin: 5px;
+padding: 10px;
+background-color: #FFFFFF;
+align-self: center; /* Centra el input verticalmente */
 `;
 
 const ButtonContainer = styled.View`
@@ -49,10 +54,10 @@ const ButtonContainer = styled.View`
 `;
 
 const CustomButton = styled.TouchableOpacity`
-  width: 184px;
-  height: 54px;
+  width: 150px;
+  height: 50px;
   margin-right: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: #17BAC0;
   justify-content: center;
@@ -61,13 +66,13 @@ const CustomButton = styled.TouchableOpacity`
 `;
 
 const CustomButtonText = styled.Text`
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 32px;
-  letter-spacing: 0;
-  text-align: left;
-  font-family: "Roboto";
-  color: #FFFFFF;
+font-size: 20px;
+font-weight: bold;
+line-height: 20px;
+letter-spacing: 0;
+text-align: left;
+font-family: "Roboto";
+color: #FFFFFF;
 `;
 
 const Login: React.FC<HomeProps> = ({ navigation }) => {
