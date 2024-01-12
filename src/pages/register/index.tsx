@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import styled from "styled-components/native";
 import database from "@react-native-firebase/database";
 import RegisterProps from "../welcome/interface";
+import auth from '@react-native-firebase/auth';
 
 const ViewContainer = styled.View`
   background-color: #9dffff;
@@ -68,6 +69,22 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
   const [celular, setCelular] = useState("");
   const [correo, setCorreo] = useState("");
 
+  const registerAuthFirebase= async (correo:String, password:String)=>{
+    
+    try {
+      if(!correo || !password){
+        return;
+      }
+      const userCredential = await auth().createUserWithEmailAndPassword(correo, password);
+      console.log("registro del auth Exitoso", userCredential.user)
+    } catch (error) {
+      console.error('Error al registrar auth', error);
+    }
+    console.log("los datos que me llegan son:", correo , "password", password);
+  }
+
+
+
   const registerUsers = async () => {
     try {
       if (!ci || !nombre || !edad || !contresenia || !celular || !correo) {
@@ -87,6 +104,7 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
       });
 
       console.log("Registro exitoso");
+      registerAuthFirebase(correo,contresenia);
       navigation.navigate("Login");
     } catch (error) {
       console.error("Error al registrar", error);
