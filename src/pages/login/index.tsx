@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components/native';
 import Input from "../../components/atoms/input";
 import HomeProps from "../welcome/interface";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import {initializeApp }from 'firebase/app';
 import {firebaseConfig}from '../../../firebase-config';
+import auth from '@react-native-firebase/auth';
+import { Alert, TextInput } from "react-native";
 
 const Container = styled.View`
   background-color: #9DFFFF;
@@ -39,12 +41,12 @@ const FormText = styled.Text`
 `;
 
 const FormInput = styled(Input)`
-width: 80%; /* Ajusta el ancho según tus necesidades */
+width: 80%;
 height: 40px;
 margin: 5px;
 padding: 10px;
 background-color: #FFFFFF;
-align-self: center; /* Centra el input verticalmente */
+align-self: center;
 `;
 
 const ButtonContainer = styled.View`
@@ -76,17 +78,49 @@ color: #FFFFFF;
 `;
 
 const Login: React.FC<HomeProps> = ({ navigation }) => {
+ 
+  const [email,setEmail]= useState("");
+  const [password,setPassword]=useState("");
+
+  const SingIn= async ()=>{
+    
+    try {
+      console.log("el correo es:",email,"la constraseña es:",password);
+      await auth().signInWithEmailAndPassword( email , password)
+      navigation.navigate("Home")
+    } catch (error) {
+      Alert.alert(
+        'No pudo iniciar sesion',
+        'Verifique su correo o contraseña',
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => console.log('Presionaste Cancelar'),
+            style: 'cancel',
+          },
+          {
+            text: 'Aceptar',
+            onPress: () => console.log('Presionaste Aceptar'),
+          },
+        ],
+        { cancelable: false }
+      );
+      console.error(error);
+    }
+    
+  }
   return (
     <Container>
       <Title>Login</Title>
       <FormContainer>
         <FormText>Correo</FormText>
-        <FormInput placeholder="ejemplo@gmail.com" />
+        <TextInput value={email} placeholder="ejemplo@gmail.com" onChangeText={setEmail}/>
         <FormText>Contraseña</FormText>
-        <FormInput placeholder="******" />
+        <TextInput value={password} placeholder="******" onChangeText={setPassword}
+        secureTextEntry/>
       </FormContainer>
       <ButtonContainer>
-        <CustomButton onPress={() => navigation.navigate("Home")}>
+        <CustomButton onPress={SingIn}>
           <CustomButtonText>Ingresar</CustomButtonText>
         </CustomButton>
         <CustomButton onPress={() => navigation.navigate("Welcome")}>
