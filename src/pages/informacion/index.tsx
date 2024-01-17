@@ -1,6 +1,8 @@
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
+import HomeProps from "../welcome/interface";
+import ButtonComponent from "../../components/atoms/button";
 
 const MainViewInfo = styled.View`
   flex: 1;
@@ -37,23 +39,33 @@ const TextTitle = styled.Text`
   font-size: 30px;
   margin-bottom: 50px;
 `;
-const InformacionUsuario = () => {
+const ButtonContainer = styled.View`
+  margin-bottom: 20px;
+`;
+
+const InformacionUsuario: React.FC<HomeProps> = ({ navigation }) => {
+  const handleRegister = () => {
+    navigation.navigate("Mascota")
+  };
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
         <TextTitle>Opciones</TextTitle>
-        <OptionButton>
-          <TextButton>Datos usuario</TextButton>
-        </OptionButton>
-        <OptionButton>
-          <TextButton>Añadir mascota</TextButton>
-        </OptionButton>
-        <OptionButton>
-          <TextButton>Ver mascotas</TextButton>
-        </OptionButton>
-        <OptionButton>
-          <TextButton>Salir</TextButton>
-        </OptionButton>
+        <ButtonContainer>
+        <ButtonComponent title="Opciones" onPress={handleRegister}/>
+        </ButtonContainer>
+        <ButtonContainer>
+        <ButtonComponent title="Datos Usuario" onPress={handleRegister}/>
+        </ButtonContainer>
+        <ButtonContainer>
+        <ButtonComponent title="Añadir Mascotas" onPress={handleRegister}/>
+        </ButtonContainer>
+        <ButtonContainer>
+        <ButtonComponent title="Ver Mascotas" onPress={handleRegister}/>
+        </ButtonContainer>
+        <ButtonContainer>
+        <ButtonComponent title="Salir" onPress={handleRegister}/>
+        </ButtonContainer>
       </ViewInfomacionOptions>
     </MainViewInfo>
   );
