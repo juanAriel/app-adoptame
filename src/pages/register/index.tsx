@@ -71,6 +71,14 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
   const [celular, setCelular] = useState<number>(0);
   const [correo, setCorreo] = useState("");
 
+  const handleNumericInputChange = (text: string, setStateFunction: (value: number) => void) => {
+    const numericValue = parseInt(text, 10);
+    if (!isNaN(numericValue)) {
+      setStateFunction(numericValue);
+    }
+  };
+  
+
   const registerAuthFirebase= async (correo:String, password:String)=>{
     
     try {
@@ -120,12 +128,7 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
         <TextFormTitle>Ci</TextFormTitle>
         <InputText
         value={ci === 0 ? '' : ci.toString()}
-          onChangeText={(text) => {
-            const numericValue = parseInt(text, 10);
-            if (!isNaN(numericValue)) {
-              setCi(numericValue);
-            }
-          }}
+        onChangeText={(text) => handleNumericInputChange(text, setCi)}
           placeholder="65265498"
           keyboardType="numeric"
         />
@@ -139,13 +142,8 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
         <InputText
         placeholder="Edad"
         value={edad === 0 ? '' : edad.toString()}
-        onChangeText={(text) => {
-        const numericValue = parseInt(text, 10);
-        if (!isNaN(numericValue)) {
-          setEdad(numericValue);
-        }
-      }}
-      keyboardType="numeric"
+        onChangeText={(text) =>handleNumericInputChange(text, setEdad)}
+        keyboardType="numeric"
     />
         <TextFormTitle>Contrasenia</TextFormTitle>
         <InputText
@@ -158,12 +156,7 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
         <InputText
       placeholder="70000001"
       value={celular === 0 ? '' : celular.toString()}
-      onChangeText={(text) => {
-        const numericValue = parseInt(text, 10);
-        if (!isNaN(numericValue)) {
-          setCelular(numericValue);
-        }
-      }}
+      onChangeText={(text) =>handleNumericInputChange(text, setCelular)}
       keyboardType="numeric"
     />
         <TextFormTitle>Correo</TextFormTitle>
