@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import {  TouchableOpacity, TextInput } from "react-native";
 import styled from "styled-components/native";
 import database from "@react-native-firebase/database";
 import RegisterProps from "../welcome/interface";
@@ -34,12 +34,14 @@ const TextFormTitle = styled.Text`
   margin-left: 20px;
 `;
 
-/* const TextInput = styled(Input)`
+
+const InputText  = styled(TextInput)`
   height: 40px;
   margin: 5px;
   padding: 10px;
   background-color: #FFFFFF;
-`; */
+  border-radius: 15px;
+`
 
 const RegisterButton = styled(TouchableOpacity)`
   width: 150px;
@@ -62,11 +64,11 @@ const RegisterButtonText = styled.Text`
 `;
 
 const Register: React.FC<RegisterProps> = ({ navigation }) => {
-  const [ci, setCi] = useState("");
+  const [ci, setCi] = useState<number>(0);
   const [nombre, setNombre] = useState("");
-  const [edad, setEdad] = useState("");
+  const [edad, setEdad] = useState<number>(0);
   const [contresenia, setContresenia] = useState("");
-  const [celular, setCelular] = useState("");
+  const [celular, setCelular] = useState<number>(0);
   const [correo, setCorreo] = useState("");
 
   const registerAuthFirebase= async (correo:String, password:String)=>{
@@ -116,37 +118,56 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
       <TextTitle>REGISTRO</TextTitle>
       <FormContainer>
         <TextFormTitle>Ci</TextFormTitle>
-        <TextInput
-          value={ci}
-          onChangeText={(text) => setCi(text)}
+        <InputText
+        value={ci === 0 ? '' : ci.toString()}
+          onChangeText={(text) => {
+            const numericValue = parseInt(text, 10);
+            if (!isNaN(numericValue)) {
+              setCi(numericValue);
+            }
+          }}
           placeholder="65265498"
+          keyboardType="numeric"
         />
         <TextFormTitle>Nombre</TextFormTitle>
-        <TextInput
+        <InputText
           value={nombre}
           onChangeText={(text) => setNombre(text)}
           placeholder="Nombre"
         />
         <TextFormTitle>Edad</TextFormTitle>
-        <TextInput
-          placeholder="Edad"
-          value={edad}
-          onChangeText={(text) => setEdad(text)}
-        />
+        <InputText
+        placeholder="Edad"
+        value={edad === 0 ? '' : edad.toString()}
+        onChangeText={(text) => {
+        const numericValue = parseInt(text, 10);
+        if (!isNaN(numericValue)) {
+          setEdad(numericValue);
+        }
+      }}
+      keyboardType="numeric"
+    />
         <TextFormTitle>Contrasenia</TextFormTitle>
-        <TextInput
+        <InputText
           value={contresenia}
           onChangeText={(text) => setContresenia(text)}
           placeholder="**********"
+          secureTextEntry
         />
         <TextFormTitle>Celular</TextFormTitle>
-        <TextInput
-          value={celular}
-          onChangeText={(text) => setCelular(text)}
-          placeholder="70000001"
-        />
+        <InputText
+      placeholder="70000001"
+      value={celular === 0 ? '' : celular.toString()}
+      onChangeText={(text) => {
+        const numericValue = parseInt(text, 10);
+        if (!isNaN(numericValue)) {
+          setCelular(numericValue);
+        }
+      }}
+      keyboardType="numeric"
+    />
         <TextFormTitle>Correo</TextFormTitle>
-        <TextInput
+        <InputText
           value={correo}
           onChangeText={(text) => setCorreo(text)}
           placeholder="ejemplo@gmail.com"
