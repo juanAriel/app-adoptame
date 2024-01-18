@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import styled from 'styled-components/native';
 import Input from "../../components/atoms/input";
 import HomeProps from "../welcome/interface";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import {initializeApp }from 'firebase/app';
-import {firebaseConfig}from '../../../firebase-config';
 import auth from '@react-native-firebase/auth';
 import { Alert, TextInput } from "react-native";
 
@@ -87,6 +84,7 @@ const Login: React.FC<HomeProps> = ({ navigation }) => {
     try {
       console.log("el correo es:",email,"la constraseña es:",password);
       await auth().signInWithEmailAndPassword( email , password)
+      
       navigation.navigate("Home")
     } catch (error) {
       Alert.alert(

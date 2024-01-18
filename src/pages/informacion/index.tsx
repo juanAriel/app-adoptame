@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import HomeProps from "../welcome/interface";
+import ListaMascotaProps from "./interface";
 import ButtonComponent from "../../components/atoms/button";
 import React, { useEffect } from 'react'
 import auth from '@react-native-firebase/auth';
@@ -39,11 +39,11 @@ const TextTitle = styled.Text`
   font-size: 30px;
   margin-bottom: 50px;
 `;
-const ButtonContainer = styled.View`
+
+const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
+  const ButtonContainer = styled.View`
   margin-bottom: 20px;
 `;
-
-const InformacionUsuario: React.FC<HomeProps> = ({ navigation }) => {
   useEffect(()=>{
     const userSesionOn = auth().onAuthStateChanged((user)=>{
       if (!user) {
@@ -59,13 +59,13 @@ const InformacionUsuario: React.FC<HomeProps> = ({ navigation }) => {
   const handleRegister = () => {
     navigation.navigate("Mascota")
   };
+  const handleViewListPet = () => {
+    navigation.navigate("ListaMascota")
+  };
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
         <TextTitle>Opciones</TextTitle>
-        <ButtonContainer>
-        <ButtonComponent title="Opciones" onPress={handleRegister}/>
-        </ButtonContainer>
         <ButtonContainer>
         <ButtonComponent title="Datos Usuario" onPress={handleRegister}/>
         </ButtonContainer>
@@ -73,7 +73,7 @@ const InformacionUsuario: React.FC<HomeProps> = ({ navigation }) => {
         <ButtonComponent title="Añadir Mascotas" onPress={handleRegister}/>
         </ButtonContainer>
         <ButtonContainer>
-        <ButtonComponent title="Ver Mascotas" onPress={handleRegister}/>
+        <ButtonComponent title="Ver Mascotas" onPress={handleViewListPet}/>
         </ButtonContainer>
         <ButtonContainer>
         <ButtonComponent title="Salir" onPress={handleRegister}/>
