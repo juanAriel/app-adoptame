@@ -3,8 +3,11 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import RegisterProps from "../registerMascota/interface";
 import HomeProps from "../welcome/interface";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
+
 const ViewContainer = styled.View`
   background-color: #9dffff;
   align-items: center;
@@ -63,37 +66,82 @@ const RegisterButtonText = styled.Text`
 `;
 
 const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
-  useEffect(()=>{
-    const userSesionOn = auth().onAuthStateChanged((user)=>{
+  const [nombre, setNombre] = useState("");
+  const [foto, setFoto] = useState("");
+  const [edad, setEdad] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [raza, setRaza] = useState("");
+
+  const registerMascota = async () => {
+    try {
+      const user = auth().currentUser;
       if (!user) {
-        console.log("usuario no logeado");
-        
+        console.log("Usuario no logeado");
+        return;
       }
-      console.log(" el usuario:",user);
-    })
-    console.log("estamos en sesion con el usuario:");
-    return userSesionOn;
-  })
+      if (!nombre || !foto || !edad || !tipo || !raza) {
+        console.error("Todos los campos deben ser completados");
+        return;
+      }
+
+      const mascotaRef = database().ref(`/mascota`).push();
+
+      await mascotaRef.set({
+        id_user: user.uid,
+        estado:true,
+        nombre: nombre,
+        foto: foto,
+        edad: edad,
+        tipo: tipo,
+        raza: raza,
+      });
+
+      console.log("Registro de mascota exitoso");
+      navigation.navigate("ListaMascota")
+    } catch (error) {
+      console.error("Error al registrar mascota", error);
+    }
+  };
   return (
     <ViewContainer>
       <TextTitle>REGISTRO MASCOTAS</TextTitle>
       <FormContainer>
         <TextFormTitle>Nombre</TextFormTitle>
-        <InputText placeholder="Nombre" />
+        <InputText
+          placeholder="Nombre"
+          value={nombre}
+          onChangeText={(text) => setNombre(text)}
+        />
         <TextFormTitle>Foto</TextFormTitle>
-        <InputText placeholder="Foto" />
+        <InputText
+          placeholder="Foto"
+          value={foto}
+          onChangeText={(text) => setFoto(text)}
+        />
         <TextFormTitle>Edad</TextFormTitle>
-        <InputText placeholder="Edad" keyboardType="numeric" />
+        <InputText
+          placeholder="Edad"
+     
+          value={edad}
+          onChangeText={(text) => setEdad(text)}
+        />
         <TextFormTitle>Tipo</TextFormTitle>
-        <InputText placeholder="Raton" />
+        <InputText
+          placeholder="Tipo"
+          value={tipo}
+          onChangeText={(text) => setTipo(text)}
+        />
         <TextFormTitle>Raza</TextFormTitle>
-        <InputText placeholder="Roedor" keyboardType="numeric" />
+        <InputText
+          placeholder="Raza"
+          value={raza}
+          onChangeText={(text) => setRaza(text)}
+        />
       </FormContainer>
-      <RegisterButton >
+      <RegisterButton onPress={registerMascota}>
         <RegisterButtonText>Registrar</RegisterButtonText>
       </RegisterButton>
     </ViewContainer>
   );
 };
-
 export default Mascota;
