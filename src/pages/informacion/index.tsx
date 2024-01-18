@@ -59,25 +59,13 @@ const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
   const handleRegister = () => {
     navigation.navigate("Mascota")
   };
+  const handleViewListPet = () => {
+    navigation.navigate("ListaMascota")
+  };
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
         <TextTitle>Opciones</TextTitle>
-        <OptionButton>
-          <TextButton>Datos usuario</TextButton>
-        </OptionButton>
-        <OptionButton>
-          <TextButton>Añadir mascota</TextButton>
-        </OptionButton>
-        <OptionButton onPress={() => navigation.navigate("ListaMascota")}>
-          <TextButton>Ver mascotas</TextButton>
-        </OptionButton>
-        <OptionButton>
-          <TextButton>Salir</TextButton>
-        </OptionButton>
-        <ButtonContainer>
-        <ButtonComponent title="Opciones" onPress={handleRegister}/>
-        </ButtonContainer>
         <ButtonContainer>
         <ButtonComponent title="Datos Usuario" onPress={handleRegister}/>
         </ButtonContainer>
@@ -85,7 +73,7 @@ const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
         <ButtonComponent title="Añadir Mascotas" onPress={handleRegister}/>
         </ButtonContainer>
         <ButtonContainer>
-        <ButtonComponent title="Ver Mascotas" onPress={handleRegister}/>
+        <ButtonComponent title="Ver Mascotas" onPress={handleViewListPet}/>
         </ButtonContainer>
         <ButtonContainer>
         <ButtonComponent title="Salir" onPress={handleRegister}/>
