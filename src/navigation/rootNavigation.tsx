@@ -5,7 +5,7 @@ import Register from '../pages/register';
 import Login from '../pages/login';
 import Welcome from '../pages/welcome';
 import BottomTabNavigation from './BottomTabNavigation';
-import Mascota from '../pages/mascota';
+import Mascota from '../pages/registerMascota';
 
 export type RouteParamList={
   Welcome:undefined;

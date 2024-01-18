@@ -1,9 +1,9 @@
 import { TouchableOpacity } from "react-native";
-import React from "react";
 import styled from "styled-components/native";
 import HomeProps from "../welcome/interface";
 import ButtonComponent from "../../components/atoms/button";
-
+import React, { useEffect } from 'react'
+import auth from '@react-native-firebase/auth';
 const MainViewInfo = styled.View`
   flex: 1;
   background-color: #9dffff;
@@ -44,6 +44,18 @@ const ButtonContainer = styled.View`
 `;
 
 const InformacionUsuario: React.FC<HomeProps> = ({ navigation }) => {
+  useEffect(()=>{
+    const userSesionOn = auth().onAuthStateChanged((user)=>{
+      if (!user) {
+        console.log("usuario no logeado");
+        
+      }
+      console.log(" el usuario:",user);
+    })
+    console.log("estamos en sesion con el usuario:");
+    return userSesionOn;
+  })
+  
   const handleRegister = () => {
     navigation.navigate("Mascota")
   };

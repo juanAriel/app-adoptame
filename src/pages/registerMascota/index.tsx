@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import RegisterProps from "../registerMascota/interface";
 import HomeProps from "../welcome/interface";
-
+import React, { useEffect } from 'react'
+import auth from '@react-native-firebase/auth';
 const ViewContainer = styled.View`
   background-color: #9dffff;
   align-items: center;
@@ -62,7 +63,17 @@ const RegisterButtonText = styled.Text`
 `;
 
 const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
- 
+  useEffect(()=>{
+    const userSesionOn = auth().onAuthStateChanged((user)=>{
+      if (!user) {
+        console.log("usuario no logeado");
+        
+      }
+      console.log(" el usuario:",user);
+    })
+    console.log("estamos en sesion con el usuario:");
+    return userSesionOn;
+  })
   return (
     <ViewContainer>
       <TextTitle>REGISTRO MASCOTAS</TextTitle>
