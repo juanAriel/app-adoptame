@@ -1,6 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
+import ListaMascotaProps from "./interface";
 
 const MainViewInfo = styled.View`
   flex: 1;
@@ -37,7 +38,7 @@ const TextTitle = styled.Text`
   font-size: 30px;
   margin-bottom: 50px;
 `;
-const InformacionUsuario = () => {
+const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
@@ -48,7 +49,7 @@ const InformacionUsuario = () => {
         <OptionButton>
           <TextButton>Añadir mascota</TextButton>
         </OptionButton>
-        <OptionButton>
+        <OptionButton onPress={() => navigation.navigate("ListaMascota")}>
           <TextButton>Ver mascotas</TextButton>
         </OptionButton>
         <OptionButton>

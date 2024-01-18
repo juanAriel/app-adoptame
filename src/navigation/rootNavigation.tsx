@@ -5,12 +5,14 @@ import Register from '../pages/register';
 import Login from '../pages/login';
 import Welcome from '../pages/welcome';
 import BottomTabNavigation from './BottomTabNavigation';
+import ListaMascota from '../pages/listaMascotas';
 
 export type RouteParamList={
   Welcome:undefined;
     Register:undefined;
     Login:undefined;
     Home:undefined;
+    ListaMascota:undefined;
 }
 
 const Stack = createNativeStackNavigator<RouteParamList>();
@@ -37,6 +39,10 @@ const rootNavigation = () => {
       component={BottomTabNavigation}
       options={{ headerShown: false }}
     />
+    <Stack.Screen
+    name="ListaMascota"
+    component={ListaMascota}
+    options={{headerShown:false}}/>
     </Stack.Navigator>
   )
 }
