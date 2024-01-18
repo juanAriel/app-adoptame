@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Alert } from "react-native";
 import styled from "styled-components/native";
 import ListaMascotaProps from "./interface";
 import ButtonComponent from "../../components/atoms/button";
@@ -62,6 +62,15 @@ const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
   const handleViewListPet = () => {
     navigation.navigate("ListaMascota")
   };
+  const handleLogout = async () => {
+    try {
+      await auth().signOut();
+      navigation.navigate("Login"); 
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error.message);
+      Alert.alert('Error', 'No se pudo cerrar sesión. Por favor, inténtalo de nuevo.');
+    }
+  };
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
@@ -76,7 +85,7 @@ const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
         <ButtonComponent title="Ver Mascotas" onPress={handleViewListPet}/>
         </ButtonContainer>
         <ButtonContainer>
-        <ButtonComponent title="Salir" onPress={handleRegister}/>
+        <ButtonComponent title="Salir" onPress={handleLogout} />
         </ButtonContainer>
       </ViewInfomacionOptions>
     </MainViewInfo>
