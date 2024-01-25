@@ -1,12 +1,18 @@
-
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image, Platform } from "react-native";
 import styled from "styled-components/native";
 import RegisterProps from "../registerMascota/interface";
 import HomeProps from "../welcome/interface";
-import React, { useEffect, useState } from 'react'
-import auth from '@react-native-firebase/auth';
-import database from '@react-native-firebase/database';
+import React, { useEffect, useState } from "react";
+import auth from "@react-native-firebase/auth";
+import database from "@react-native-firebase/database";
+//import * as ImagePicker from 'react-native-image-picker';
+import RNFS from 'react-native-fs';
 
+import ImagePicker, {
+  launchImageLibrary,
+  ImagePickerResponse,
+} from "react-native-image-picker";
+import storage from '@react-native-firebase/storage'
 
 const ViewContainer = styled.View`
   background-color: #9dffff;
@@ -27,7 +33,7 @@ const FormContainer = styled.View`
   justify-content: center;
   width: 375px;
   margin: 30px;
-  height: 500px;
+  height: 400px;
   border-radius: 25px;
 `;
 
@@ -72,6 +78,33 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
   const [tipo, setTipo] = useState("");
   const [raza, setRaza] = useState("");
 
+  const chooseImage = () => {
+    const user = auth().currentUser;
+    if (!user) {
+      console.log("Usuario no logeado");
+      return;
+    }
+    launchImageLibrary({},async (response: ImagePickerResponse) => {
+      if (response.assets && response.assets.length > 0) {
+        const selectedImage = response.assets[0];
+        setFoto(selectedImage.uri || "");
+
+        const imageName = user.uid + selectedImage.uri;
+        const reference = storage().ref().child(`gatos/${imageName}`);
+        try {
+          await reference.putFile(selectedImage.uri);
+          if (Platform.OS === 'android') {
+            const tempImagePath = selectedImage.uri.replace('file://', '');
+            await RNFS.unlink(tempImagePath);
+          }
+          console.log("Imagen subida correctamente al almacenamiento de Firebase");
+        } catch (error) {
+          console.error("Error al subir la imagen al almacenamiento de Firebase", error);
+        }
+      }
+    });
+  };
+
   const registerMascota = async () => {
     try {
       const user = auth().currentUser;
@@ -88,7 +121,7 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
 
       await mascotaRef.set({
         id_user: user.uid,
-        estado:true,
+        estado: true,
         nombre: nombre,
         foto: foto,
         edad: edad,
@@ -97,7 +130,7 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
       });
 
       console.log("Registro de mascota exitoso");
-      navigation.navigate("ListaMascota")
+      navigation.navigate("ListaMascota");
     } catch (error) {
       console.error("Error al registrar mascota", error);
     }
@@ -113,15 +146,19 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
           onChangeText={(text) => setNombre(text)}
         />
         <TextFormTitle>Foto</TextFormTitle>
-        <InputText
-          placeholder="Foto"
-          value={foto}
-          onChangeText={(text) => setFoto(text)}
-        />
+        <TouchableOpacity onPress={chooseImage}>
+          {foto ? (
+            <Image
+              source={{ uri: foto }}
+              style={{ width: 100, height: 100, borderRadius: 50 }}
+            />
+          ) : (
+            <InputText placeholder="Seleccionar foto" editable={false} />
+          )}
+        </TouchableOpacity>
         <TextFormTitle>Edad</TextFormTitle>
         <InputText
           placeholder="Edad"
-     
           value={edad}
           onChangeText={(text) => setEdad(text)}
         />

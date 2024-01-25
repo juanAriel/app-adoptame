@@ -8,9 +8,15 @@ const ListaMascota: React.FC<ListaMascotaProps> = ({ navigation }) => {
 
   const toggleSwitch = (key: string) => {
     const databaseRef = database().ref(`/user/${key}`);
-    databaseRef.update({
-      switchedOn: !data.find(item => item.key === key)?.switchedOn,
-    });
+    const currentItem = data.find(item => item.key === key);
+
+    if (currentItem) {
+      const updatedSwitchedOn = !currentItem.switchedOn;
+      
+      databaseRef.update({
+        switchedOn: updatedSwitchedOn,
+      });
+    }
   };
 
   const handleAdoptar = (key: string) => {
@@ -19,7 +25,7 @@ const ListaMascota: React.FC<ListaMascotaProps> = ({ navigation }) => {
 
   useEffect(() => {
     const databaseRef = database().ref('/mascota');
-
+  
     databaseRef.on('value', (snapshot) => {
       const items = snapshot.val();
       const dataList = [];
@@ -60,6 +66,7 @@ const ListaMascota: React.FC<ListaMascotaProps> = ({ navigation }) => {
             >
               <Text style={{ color: 'white' }}>Adoptar</Text>
             </TouchableOpacity>
+            <Text>{item.nombre}</Text>
           </View>
         )}
       />
