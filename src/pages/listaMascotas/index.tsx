@@ -14,7 +14,7 @@ const ListaMascota: React.FC<ItemsProps> = () => {
   };
 
   useEffect(() => {
-    const databaseRef = database().ref('/user');
+    const databaseRef = database().ref('/mascota');
 
     databaseRef.on('value', (snapshot) => {
       const items = snapshot.val();
@@ -44,7 +44,7 @@ const ListaMascota: React.FC<ItemsProps> = () => {
               value={item.switchedOn}
               onValueChange={() => toggleSwitch(item.key)}
             />
-            <Text>{item.correo}</Text>
+            <Text>{item.nombre}</Text>
           </View>
         )}
       />
