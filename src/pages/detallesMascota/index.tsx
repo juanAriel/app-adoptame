@@ -37,12 +37,22 @@ margin-bottom: 25px;
 `;
 
 const DetallesMascota: React.FC<DetallesMascotaProps> = ({ route }) => {
-  const { mascotaKey } = route.params;
+  const { mascotaKey,titulo } = route.params;
   const [mascotaData, setMascotaData] = useState(null);
-
+  const [especiesData, setEspeciesData] = useState(null);
   useEffect(() => {
     const databaseRef = database().ref(`/mascota/${mascotaKey}`);
-
+    const databaseEspecie = database().ref(`/especie/${titulo}`);
+    databaseEspecie.once('value')
+    .then(snapshot => {
+      const dataEspecie = snapshot.val();
+      console.log('Datos de especie:', dataEspecie && dataEspecie.tipo);
+      setEspeciesData(dataEspecie);
+    })
+    .catch(error => {
+      console.error('Error al obtener datos de especie:', error);
+    });
+  
     const handleDataChange = (snapshot) => {
       const data = snapshot.val();
       setMascotaData(data);
@@ -54,6 +64,7 @@ const DetallesMascota: React.FC<DetallesMascotaProps> = ({ route }) => {
       databaseRef.off('value', handleDataChange);
     };
   }, [mascotaKey]);
+
 
   useEffect(() => {
     const userSesionOn = auth().onAuthStateChanged((user) => {
@@ -68,11 +79,11 @@ const DetallesMascota: React.FC<DetallesMascotaProps> = ({ route }) => {
 
   return (
     <MainViewInfo>
+       <TextTitle>{especiesData && especiesData.tipo }</TextTitle>
       <ViewInfomacionOptions>
-        <TextTitle>Detalle de mascotas</TextTitle>
         {mascotaData ? (
           <View>
-            <DetailText>Foto: {mascotaData.foto}</DetailText>
+            <DetailText>Foto: {mascotaData}</DetailText>
             <DetailText>Nombre: {mascotaData.nombre}</DetailText>
             <DetailText>Edad: {mascotaData.edad}</DetailText>
             <DetailText>Raza: {mascotaData.raza}</DetailText>
