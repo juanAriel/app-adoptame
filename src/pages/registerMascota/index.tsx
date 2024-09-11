@@ -1,18 +1,16 @@
-import { TouchableOpacity, Image, Platform } from "react-native";
-import styled from "styled-components/native";
-import RegisterProps from "../registerMascota/interface";
-import HomeProps from "../welcome/interface";
-import React, { useEffect, useState } from "react";
-import auth from "@react-native-firebase/auth";
-import database from "@react-native-firebase/database";
-//import * as ImagePicker from 'react-native-image-picker';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, Image, Platform } from 'react-native';
+import styled from 'styled-components/native';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 import RNFS from 'react-native-fs';
+import { Picker } from '@react-native-picker/picker';
 
 import ImagePicker, {
   launchImageLibrary,
   ImagePickerResponse,
-} from "react-native-image-picker";
-import storage from '@react-native-firebase/storage'
+} from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
 
 const ViewContainer = styled.View`
   background-color: #9dffff;
@@ -67,27 +65,54 @@ const RegisterButtonText = styled.Text`
   line-height: 20px;
   letter-spacing: 0;
   text-align: left;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   color: #ffffff;
 `;
 
-const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
-  const [nombre, setNombre] = useState("");
-  const [foto, setFoto] = useState("");
-  const [edad, setEdad] = useState("");
-  const [tipo, setTipo] = useState("");
-  const [raza, setRaza] = useState("");
+const Mascota: React.FC = () => {
+  const [nombre, setNombre] = useState('');
+  const [foto, setFoto] = useState('');
+  const [edad, setEdad] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [raza, setRaza] = useState('');
+  const [especies, setEspecies] = useState([]);
+  const [selectedValue, setSelectedValue] = useState('');
+
+  useEffect(() => {
+    const especiesRef = database().ref('/especie');
+
+    const handleEspeciesChange = (snapshot) => {
+      const especiesData = snapshot.val();
+      console.log('Especies Data:', especiesData);
+
+      if (especiesData) {
+        const especiesList = Object.keys(especiesData)
+          .filter((key) => especiesData[key] !== null)
+          .map((key) => ({
+            id: key,
+            nombre: especiesData[key].tipo || '',
+          }));
+        setEspecies(especiesList);
+      }
+    };
+
+    especiesRef.on('value', handleEspeciesChange);
+
+    return () => {
+      especiesRef.off('value', handleEspeciesChange);
+    };
+  }, []);
 
   const chooseImage = () => {
     const user = auth().currentUser;
     if (!user) {
-      console.log("Usuario no logeado");
+      console.log('Usuario no logeado');
       return;
     }
-    launchImageLibrary({},async (response: ImagePickerResponse) => {
+    launchImageLibrary({}, async (response: ImagePickerResponse) => {
       if (response.assets && response.assets.length > 0) {
         const selectedImage = response.assets[0];
-        setFoto(selectedImage.uri || "");
+        setFoto(selectedImage.uri || '');
 
         const imageName = user.uid + selectedImage.uri;
         const reference = storage().ref().child(`gatos/${imageName}`);
@@ -97,9 +122,12 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
             const tempImagePath = selectedImage.uri.replace('file://', '');
             await RNFS.unlink(tempImagePath);
           }
-          console.log("Imagen subida correctamente al almacenamiento de Firebase");
+          console.log('Imagen subida correctamente al almacenamiento de Firebase');
         } catch (error) {
-          console.error("Error al subir la imagen al almacenamiento de Firebase", error);
+          console.error(
+            'Error al subir la imagen al almacenamiento de Firebase',
+            error
+          );
         }
       }
     });
@@ -109,11 +137,11 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
     try {
       const user = auth().currentUser;
       if (!user) {
-        console.log("Usuario no logeado");
+        console.log('Usuario no logeado');
         return;
       }
       if (!nombre || !foto || !edad || !tipo || !raza) {
-        console.error("Todos los campos deben ser completados");
+        console.error('Todos los campos deben ser completados');
         return;
       }
 
@@ -129,12 +157,13 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
         raza: raza,
       });
 
-      console.log("Registro de mascota exitoso");
-      navigation.navigate("ListaMascota");
+      console.log('Registro de mascota exitoso');
+     
     } catch (error) {
-      console.error("Error al registrar mascota", error);
+      console.error('Error al registrar mascota', error);
     }
   };
+
   return (
     <ViewContainer>
       <TextTitle>REGISTRO MASCOTAS</TextTitle>
@@ -163,11 +192,22 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
           onChangeText={(text) => setEdad(text)}
         />
         <TextFormTitle>Tipo</TextFormTitle>
-        <InputText
-          placeholder="Tipo"
-          value={tipo}
-          onChangeText={(text) => setTipo(text)}
-        />
+        <Picker
+          selectedValue={selectedValue}
+          onValueChange={(itemValue) => {
+            setSelectedValue(itemValue);
+            setTipo(itemValue); 
+          }}
+        >
+          <Picker.Item label="Seleccionar tipo" value="" />
+          {especies.map((especie) => (
+            <Picker.Item
+              key={especie.id}
+              label={especie.nombre}
+              value={especie.nombre}
+            />
+          ))}
+        </Picker>
         <TextFormTitle>Raza</TextFormTitle>
         <InputText
           placeholder="Raza"
@@ -181,4 +221,5 @@ const Mascota: React.FC<RegisterProps> = ({ navigation }) => {
     </ViewContainer>
   );
 };
+
 export default Mascota;

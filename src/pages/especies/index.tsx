@@ -1,9 +1,9 @@
 
 import styled from 'styled-components/native';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import auth from '@react-native-firebase/auth';
-import EspeciesProps from "./interface";
 import ButtonComponent from "../../components/atoms/button";
+import EspeciesProps from './interface';
 const MainViewInfo = styled.View`
   flex: 1;
   background-color: #9dffff;
@@ -27,10 +27,11 @@ const TextTitle = styled.Text`
   margin-bottom: 50px;
 `;
 
-const Especies: React.FC<EspeciesProps> = ({ navigation }) => {
+const Especies: React.FC<EspeciesProps> = ({ navigation,title }) => {
   const ButtonContainer = styled.View`
   margin-bottom: 20px;
 `;
+
   useEffect(() => {
     const userSesionOn = auth().onAuthStateChanged((user) => {
       if (!user) {
@@ -41,21 +42,22 @@ const Especies: React.FC<EspeciesProps> = ({ navigation }) => {
     console.log('estamos en sesion con el usuario:');
     return userSesionOn;
   }, []);
-  const handleViewListPet = () => {
-    navigation.navigate("ListaMascota")
+  const handleViewListPet = (title:string) => {
+    console.log('Título:', title);
+    navigation.navigate("DetallesMascota",{titulo:title})
   };
   return (
     <MainViewInfo>
       <ViewInfomacionOptions>
         <TextTitle>Especies</TextTitle>
         <ButtonContainer>
-        <ButtonComponent title="Perros" onPress={handleViewListPet}/>
+        <ButtonComponent title="Perros"  onPress={() => handleViewListPet("1")}/>
         </ButtonContainer>
         <ButtonContainer>
-        <ButtonComponent title="Gatos" onPress={handleViewListPet}/>
+        <ButtonComponent title="Gatos" onPress={() => handleViewListPet("2")}/>
         </ButtonContainer>
         <ButtonContainer>
-        <ButtonComponent title="Aves" onPress={handleViewListPet}/>
+        <ButtonComponent title="Aves" onPress={() => handleViewListPet("3")}/>
         </ButtonContainer>
         <ButtonContainer>
         <ButtonComponent title="Roedores" onPress={handleViewListPet}/>
@@ -72,3 +74,7 @@ const Especies: React.FC<EspeciesProps> = ({ navigation }) => {
 };
 
 export default Especies;
+
+function database() {
+  throw new Error('Function not implemented.');
+}

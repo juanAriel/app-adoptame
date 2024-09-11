@@ -1,6 +1,6 @@
-interface ItemsProps {
+interface ListaMascotaProps {
     key: string;
     nombre: string;
   }
   
-  export default ItemsProps;
+  export default ListaMascotaProps;
