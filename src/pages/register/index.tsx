@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import {  TouchableOpacity, TextInput } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, TextInput } from "react-native";
 import styled from "styled-components/native";
 import database from "@react-native-firebase/database";
 import RegisterProps from "../welcome/interface";
-import auth from '@react-native-firebase/auth';
+import auth from "@react-native-firebase/auth";
 
 const ViewContainer = styled.View`
   background-color: #9dffff;
@@ -34,14 +34,13 @@ const TextFormTitle = styled.Text`
   margin-left: 20px;
 `;
 
-
-const InputText  = styled(TextInput)`
+const InputText = styled(TextInput)`
   height: 40px;
   margin: 5px;
   padding: 10px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 15px;
-`
+`;
 
 const RegisterButton = styled(TouchableOpacity)`
   width: 150px;
@@ -71,29 +70,31 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
   const [celular, setCelular] = useState<number>(0);
   const [correo, setCorreo] = useState("");
 
-  const handleNumericInputChange = (text: string, setStateFunction: (value: number) => void) => {
+  const handleNumericInputChange = (
+    text: string,
+    setStateFunction: (value: number) => void
+  ) => {
     const numericValue = parseInt(text, 10);
     if (!isNaN(numericValue)) {
       setStateFunction(numericValue);
     }
   };
-  
 
-  const registerAuthFirebase= async (correo:String, password:String)=>{
-    
+  const registerAuthFirebase = async (correo: string, password: string) => {
     try {
-      if(!correo || !password){
+      if (!correo || !password) {
         return;
       }
-      const userCredential = await auth().createUserWithEmailAndPassword(correo, password);
-      console.log("registro del auth Exitoso", userCredential.user)
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        correo,
+        password
+      );
+      console.log("registro del auth Exitoso", userCredential.user);
     } catch (error) {
-      console.error('Error al registrar auth', error);
+      console.error("Error al registrar auth", error);
     }
-    console.log("los datos que me llegan son:", correo , "password", password);
-  }
-
-
+    console.log("los datos que me llegan son:", correo, "password", password);
+  };
 
   const registerUsers = async () => {
     try {
@@ -114,7 +115,7 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
       });
 
       console.log("Registro exitoso");
-      registerAuthFirebase(correo,contresenia);
+      registerAuthFirebase(correo, contresenia);
       navigation.navigate("Login");
     } catch (error) {
       console.error("Error al registrar", error);
@@ -123,12 +124,12 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
 
   return (
     <ViewContainer>
-      <TextTitle>REGISTRO</TextTitle>
+      <TextTitle>Register</TextTitle>
       <FormContainer>
         <TextFormTitle>Ci</TextFormTitle>
         <InputText
-        value={ci === 0 ? '' : ci.toString()}
-        onChangeText={(text) => handleNumericInputChange(text, setCi)}
+          value={ci === 0 ? "" : ci.toString()}
+          onChangeText={(text) => handleNumericInputChange(text, setCi)}
           placeholder="65265498"
           keyboardType="numeric"
         />
@@ -140,11 +141,11 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
         />
         <TextFormTitle>Edad</TextFormTitle>
         <InputText
-        placeholder="Edad"
-        value={edad === 0 ? '' : edad.toString()}
-        onChangeText={(text) =>handleNumericInputChange(text, setEdad)}
-        keyboardType="numeric"
-    />
+          placeholder="Edad"
+          value={edad === 0 ? "" : edad.toString()}
+          onChangeText={(text) => handleNumericInputChange(text, setEdad)}
+          keyboardType="numeric"
+        />
         <TextFormTitle>Contrasenia</TextFormTitle>
         <InputText
           value={contresenia}
@@ -154,11 +155,11 @@ const Register: React.FC<RegisterProps> = ({ navigation }) => {
         />
         <TextFormTitle>Celular</TextFormTitle>
         <InputText
-      placeholder="70000001"
-      value={celular === 0 ? '' : celular.toString()}
-      onChangeText={(text) =>handleNumericInputChange(text, setCelular)}
-      keyboardType="numeric"
-    />
+          placeholder="70000001"
+          value={celular === 0 ? "" : celular.toString()}
+          onChangeText={(text) => handleNumericInputChange(text, setCelular)}
+          keyboardType="numeric"
+        />
         <TextFormTitle>Correo</TextFormTitle>
         <InputText
           value={correo}

@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
-import RootNavigation from "./rootNavigation";
+import { Text, View } from "react-native";
+import RootNavigation from "./RootNavigation";
 
 const Navigation = () => (
   <NavigationContainer>

@@ -1,5 +1,5 @@
 import { NavigationProp } from "@react-navigation/native";
-import { RouteParamList } from "../../navigation/rootNavigation";
+import { RouteParamList } from "../../navigation/RootNavigation";
 
 interface DetallesMascotaProps{
     navigation:NavigationProp<RouteParamList,"DetallesMascota">

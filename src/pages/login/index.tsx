@@ -83,7 +83,7 @@ const Login: React.FC<HomeProps> = ({ navigation }) => {
     
     try {
       console.log("el correo es:",email,"la constraseña es:",password);
-      await auth().signInWithEmailAndPassword( email , password)
+      // await auth().signInWithEmailAndPassword( email , password)
       
       navigation.navigate("Home")
     } catch (error) {

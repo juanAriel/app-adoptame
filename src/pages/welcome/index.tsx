@@ -1,7 +1,5 @@
-import { ImageBackground, TouchableOpacity } from "react-native";
+import { ImageBackground } from "react-native";
 import React from "react";
-
-//import Input from "../../components/atoms/input";
 import WelcomeProps from "./interface";
 import styled from "styled-components/native";
 import ButtonComponent from "../../components/atoms/button";
@@ -36,41 +34,20 @@ const ViewButtonContainer = styled.View`
   margin-top: 10px;
 `;
 
-const CustomTouchableOpacity = styled(TouchableOpacity)`
-  width: 150px;
-  height: 50px;
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 15px;
-  overflow: hidden;
-  background-color: #17bac0;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CustomButtonText = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 20px;
-  letter-spacing: 0;
-  text-align: left;
-  font-family: "Roboto";
-  color: #ffffff;
-`;
-
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const handleRegister = () => {
+    navigation.navigate("Register")
+  };
+  const handleLogin = () => {
     navigation.navigate("Login")
   };
   return (
     <ViewContainer>
       <CircularImage source={require("../../../assets/images/welcome1.png")} />
-      <TextHome> Bienvenido </TextHome>
+      <TextHome> Welcome </TextHome>
       <ViewButtonContainer>
-        <CustomTouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <CustomButtonText>Registrar</CustomButtonText>
-        </CustomTouchableOpacity>
-        <ButtonComponent title="Login" onPress={handleRegister}/>
+        <ButtonComponent title="Register" onPress={handleRegister}/>
+        <ButtonComponent title="Login" onPress={handleLogin}/>
       </ViewButtonContainer>
     </ViewContainer>
   );

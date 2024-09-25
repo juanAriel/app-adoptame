@@ -44,17 +44,17 @@ const InformacionUsuario: React.FC<ListaMascotaProps> = ({ navigation }) => {
   const ButtonContainer = styled.View`
   margin-bottom: 20px;
 `;
-  useEffect(()=>{
-    const userSesionOn = auth().onAuthStateChanged((user)=>{
-      if (!user) {
-        console.log("usuario no logeado");
+  // useEffect(()=>{
+  //   const userSesionOn = auth().onAuthStateChanged((user)=>{
+  //     if (!user) {
+  //       console.log("usuario no logeado");
         
-      }
-      console.log(" el usuario:",user);
-    })
-    console.log("estamos en sesion con el usuario:");
-    return userSesionOn;
-  })
+  //     }
+  //     console.log(" el usuario:",user);
+  //   })
+  //   console.log("estamos en sesion con el usuario:");
+  //   return userSesionOn;
+  // })
   
   const handleRegister = () => {
     navigation.navigate("Mascota")

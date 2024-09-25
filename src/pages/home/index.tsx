@@ -6,7 +6,7 @@ import image1 from '../../../assets/images/carousel/image1.jpg';
 import image2 from '../../../assets/images/carousel/image2.jpg';
 import image3 from '../../../assets/images/carousel/image3.jpg';
 
-const { width } = Dimensions.get('window');
+// const { width } = Dimensions.get('window');
 const images = [image1, image2, image3];
 
 
@@ -45,7 +45,7 @@ const TextTitle = styled.Text`
 `;
 
 const Home = () => {
- /*  const scrollViewRef = useRef();
+  const scrollViewRef = useRef();
 
   const imagenes = [
     'https://img.freepik.com/foto-gratis/leon-melena-arcoiris-ojos-azules_1340-39421.jpg',
@@ -55,7 +55,7 @@ const Home = () => {
 
   const handleScroll = (event) => {
     const offsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.round(offsetX / width);
+    const index = Math.round(offsetX / 250);
     console.log('Índice actual:', index);
   };
 
@@ -83,46 +83,46 @@ const Home = () => {
         </TextTitle>
       </TextContainer>
     </Container>
-  ); */
+  ); 
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+//   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+//   useEffect(() => {
+//     const interval = setInterval(() => {
       
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-    }, 3000);
+//       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+//     }, 3000);
 
     
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+//     return () => clearInterval(interval);
+//   }, [currentIndex]);
 
-  const totalSlides = 3; 
+//   const totalSlides = 3; 
 
-  const renderSlides = () => {
-    return Array.from({ length: totalSlides }).map((_, index) => (
-      <CarouselItem key={index} >
-        <ImageBackground
-          /* source={ require(`../../../assets/images/carousel/image1.jpg`)  } */
-          source={images[index]}
+//   const renderSlides = () => {
+//     return Array.from({ length: totalSlides }).map((_, index) => (
+//       <CarouselItem key={index} >
+//         <ImageBackground
+//           /* source={ require(`../../../assets/images/carousel/image1.jpg`)  } */
+//           source={images[index]}
           
-          style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
-        >
-        </ImageBackground>
-      </CarouselItem>
-    ));
-  };
+//           style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}
+//         >
+//         </ImageBackground>
+//       </CarouselItem>
+//     ));
+//   };
 
-  return (
-    <Swiper
-      loop={true}
-      autoplay={false}
-      index={currentIndex}
-      onIndexChanged={(index) => setCurrentIndex(index)}
-    >
-      {renderSlides()}
-    </Swiper>
-  );
+//   return (
+//     <Swiper
+//       loop={true}
+//       autoplay={false}
+//       index={currentIndex}
+//       onIndexChanged={(index) => setCurrentIndex(index)}
+//     >
+//       {renderSlides()}
+//     </Swiper>
+//   );
+// }
 }
-
 export default Home;

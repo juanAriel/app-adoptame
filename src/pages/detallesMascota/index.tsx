@@ -66,16 +66,16 @@ const DetallesMascota: React.FC<DetallesMascotaProps> = ({ route }) => {
   }, [mascotaKey]);
 
 
-  useEffect(() => {
-    const userSesionOn = auth().onAuthStateChanged((user) => {
-      if (!user) {
-        console.log('usuario no logeado');
-      }
-      console.log('el usuario:', user);
-    });
-    console.log('estamos en sesion con el usuario:');
-    return userSesionOn;
-  }, []);
+  // useEffect(() => {
+  //   const userSesionOn = auth().onAuthStateChanged((user) => {
+  //     if (!user) {
+  //       console.log('usuario no logeado');
+  //     }
+  //     console.log('el usuario:', user);
+  //   });
+  //   console.log('estamos en sesion con el usuario:');
+  //   return userSesionOn;
+  // }, []);
 
   return (
     <MainViewInfo>

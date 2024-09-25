@@ -32,16 +32,16 @@ const Especies: React.FC<EspeciesProps> = ({ navigation,title }) => {
   margin-bottom: 20px;
 `;
 
-  useEffect(() => {
-    const userSesionOn = auth().onAuthStateChanged((user) => {
-      if (!user) {
-        console.log('usuario no logeado');
-      }
-      console.log('el usuario:', user);
-    });
-    console.log('estamos en sesion con el usuario:');
-    return userSesionOn;
-  }, []);
+  // useEffect(() => {
+  //   const userSesionOn = auth().onAuthStateChanged((user) => {
+  //     if (!user) {
+  //       console.log('usuario no logeado');
+  //     }
+  //     console.log('el usuario:', user);
+  //   });
+  //   console.log('estamos en sesion con el usuario:');
+  //   return userSesionOn;
+  // }, []);
   const handleViewListPet = (title:string) => {
     console.log('Título:', title);
     navigation.navigate("DetallesMascota",{titulo:title})

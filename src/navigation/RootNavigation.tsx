@@ -11,23 +11,25 @@ import DetallesMascota from "../pages/detallesMascota";
 
 
 export type RouteParamList = {
-  Welcome: undefined;
-  Register: undefined;
-  Login: undefined;
-  Home: undefined;
-  ListaMascota: undefined;
-  Mascota: undefined;
-  DetallesMascota: undefined;
+  Welcome: any;
+  Register: any;
+  Login: any;
+  Home: any;
+  ListaMascota: any;
+  Mascota: any;
+  DetallesMascota: any;
 };
 
 const Stack = createNativeStackNavigator<RouteParamList>();
-const rootNavigation = () => {
+const RootNavigation = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+  
+   
+     <Stack.Navigator>
+        <Stack.Screen
         name="Welcome"
         component={Welcome}
-        options={{ title: "BIENVENIDO A ADOPTA" }}
+        options={{ headerShown:false}}
       />
       <Stack.Screen
         name="Register"
@@ -49,18 +51,20 @@ const rootNavigation = () => {
         component={ListaMascota}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Mascota"
         component={Mascota}
         options={{ headerShown: true }}
-      />
+      /> */}
        <Stack.Screen
         name="DetallesMascota"
         component={DetallesMascota}
         options={{ headerShown: true }}
-      />
+        
+      /> 
     </Stack.Navigator>
+      
   );
 };
 
-export default rootNavigation;
+export default RootNavigation;
